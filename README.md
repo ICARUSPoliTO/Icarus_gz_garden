@@ -6,7 +6,7 @@ To set gazebo up:
 - clone the repo
 - set environment variables:
   GZ_VERSION=garden
-  GZ_SIM_RESOURCE_PATH=<folder path>/worlds:<folder path>/models
+  GZ_SIM_RESOURCE_PATH=\<folder path\>/worlds:<folder path>/models
   GZ_SIM_SYSTEM_PLUGIN_PATH=<folder path>
 - from terminal, in gazebo's folder:
   cmake . -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_POLICY_VERSION_MINIMUM=3.5
