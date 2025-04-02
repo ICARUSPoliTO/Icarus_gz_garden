@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10.2 FATAL_ERROR)
-project(ardupilot_gazebo)
+project(icarus_simulator)
 
 # --------------------------------------------------------------------------- #
 # If ament_cmake is found build as an ament package, otherwise ignore.
@@ -113,6 +113,18 @@ target_link_libraries(GstCameraPlugin PRIVATE
   ${GST_LINK_LIBRARIES}
 )
 
+add_library(ThrustSystem
+	SHARED
+	src/ThrustSystem.cc
+)
+target_include_directories(ThrustSystem PRIVATE
+  include
+)
+target_link_libraries(ThrustSystem PRIVATE
+  gz-sim${GZ_SIM_VER}::gz-sim${GZ_SIM_VER}
+)
+
+
 # --------------------------------------------------------------------------- #
 # Install.
 
@@ -122,6 +134,7 @@ install(
   ParachutePlugin
   CameraZoomPlugin
   GstCameraPlugin
+  ThrustSystem
   DESTINATION lib/${PROJECT_NAME}
 )
 
