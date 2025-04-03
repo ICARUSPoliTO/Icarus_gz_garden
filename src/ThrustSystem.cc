@@ -149,10 +149,11 @@ void ThrustSystem::PreUpdate(const gz::sim::UpdateInfo &_info,
 	
 	//gzdbg <<"IAS: " <<IAS <<" RPM: " <<dataPtr->RPM <<" J: " <<adv_ratio <<std::endl;
 	
+	// Compute the thrust interpolating the data sheet from the propeller's manufacturer
 	double K_t = interpolate_Kt(adv_ratio);	
-	
-	
 	double thrust = K_t * air_density * dataPtr->RPM*dataPtr->RPM/3600 * dataPtr->prop_diam*dataPtr->prop_diam*dataPtr->prop_diam*dataPtr->prop_diam;
+	
+	// Generate the force vector in the body's frame of reference
 	gz::math::Vector3<double> bodyForce(thrust, 0, 0);
 	
 	// Express thrust vector in the world's frame of reference
