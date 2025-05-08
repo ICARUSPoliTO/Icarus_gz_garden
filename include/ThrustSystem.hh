@@ -54,6 +54,9 @@ namespace thrust_system{
         	// Computes the K_t of the propeller according to the manufacturer's table, it uses linear interpolation between points and assumes RPM=2000
         	double interpolate_Kt(double adv_ratio);
         	
+        	// Raises base to an integer exponent
+        	double int_power(double base, int exponent);
+        	
         	class DataHolder{
 				public:
 					// pointer to the propeller's link

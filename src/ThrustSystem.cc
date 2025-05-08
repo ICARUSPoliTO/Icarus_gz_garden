@@ -24,6 +24,16 @@ ThrustSystem::ThrustSystem() : dataPtr(new DataHolder()){
 ThrustSystem::~ThrustSystem(){
 }
 
+// Computes the exponent-power of a number
+double ThrustSystem::int_power(double base, int exponent){
+	double result = 1;
+	for(int i=0;i<exponent;i++){
+		result *= base;
+	}
+	return result;
+}
+
+
 // Reads fields from plugin tag and uses them to find the joints and links of interest
 void ThrustSystem::Configure(
     const gz::sim::Entity &_entity,
@@ -151,7 +161,7 @@ void ThrustSystem::PreUpdate(const gz::sim::UpdateInfo &_info,
 	
 	// Compute the thrust interpolating the data sheet from the propeller's manufacturer
 	double K_t = interpolate_Kt(adv_ratio);	
-	double thrust = K_t * air_density * dataPtr->RPM*dataPtr->RPM/3600 * dataPtr->prop_diam*dataPtr->prop_diam*dataPtr->prop_diam*dataPtr->prop_diam;
+	double thrust = K_t * air_density * int_power(dataPtr->RPM/60.0, 2) * int_power(dataPtr->prop_diam, 4);
 	
 	// Generate the force vector in the body's frame of reference
 	gz::math::Vector3<double> bodyForce(thrust, 0, 0);
