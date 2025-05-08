@@ -281,11 +281,5 @@
         </dynamics>
       </axis>
     </joint>
-    
-    <plugin filename="ThrustSystem" name="thrust_system::ThrustSystem">
-    	<propeller_joint>propeller_joint</propeller_joint>
-    	<body_link>wing</body_link>
-    	<prop_diameter>0</prop_diameter>
-    </plugin>
   </model>
 </sdf>
